@@ -1,0 +1,24 @@
+<template>
+    <lightning-card title="Shopping Cart">
+        <div style="display: flex; justify-content: flex-end; margin-right: 10pt;">
+            <template if:true={productsList.length}>
+                <lightning-button label="Make An Order" variant="brand" onclick={place_and_order}></lightning-button>
+            </template>
+        </div>
+        <ul class="slds-m-around_medium">
+            <template for:each={productsList} for:item="prod">
+                <lightning-card key={prod.id}>
+                    <div style="display: flex; align-items: center;">
+                        <lightning-formatted-rich-text value={prod.thumbnail} ></lightning-formatted-rich-text>
+                        <li style="margin-left: 10pt;" >
+                            <p>
+                                <b>{prod.name}</b>
+                            </p>
+                            x{prod.amount}
+                        </li>
+                    </div>
+                </lightning-card>
+            </template>
+        </ul>
+    </lightning-card>
+</template>

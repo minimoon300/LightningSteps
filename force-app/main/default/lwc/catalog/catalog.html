@@ -1,0 +1,37 @@
+<template>
+  <lightning-card title="Products Catalog">
+      <div class="slds-card__body slds-card__body_inner">
+        <!-- Start bear list -->
+          <lightning-layout multiple-rows="true" pull-to-boundary="small">
+            <template for:each={allProducts} for:item="prod">
+              <lightning-layout-item key={prod.Id} size="3" class="slds-var-p-around_x-small">
+                <!-- Start bear tile -->
+                  <lightning-card title={prod.Name} class="bear-tile">
+                    <div class="slds-var-p-horizontal_small bear-tile-body">
+                      <div class="slds-media">
+                        <div class="slds-media__figure">
+                          <lightning-formatted-rich-text value={prod.Thumbnail__c} ></lightning-formatted-rich-text>
+                          <!-- <img width="100 px" src={prod.Thumbnail__c} alt="shoes" class="bear-silhouette"/> -->
+                        </div>
+                        <div class="slds-media__body">
+                          <p class="slds-var-m-bottom_xx-small"> {prod.Standard_Pricing__c}€</p>
+                          <lightning-button data-thumbnail={prod.Thumbnail__c} data-prodname={prod.Name} data-prodid={prod.Id} label='Add to cart' onclick={add_to_cart}></lightning-button>
+                          <!-- <p class="slds-var-m-bottom_xx-small"> ADD TO CART </p> -->
+                        </div>
+                      </div>
+                    </div>
+                  </lightning-card>
+                  <!-- End bear tile -->
+              </lightning-layout-item>
+            </template>
+          </lightning-layout>
+        <!-- End bear list -->
+        <!-- Data failed to load -->
+        <template if:true={error}>
+          <div class="slds-text-color_error">
+            An error occurred while loading the bear list
+          </div>
+        </template>
+      </div>
+    </lightning-card>
+</template>
